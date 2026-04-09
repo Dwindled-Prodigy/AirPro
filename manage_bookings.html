@@ -987,7 +987,7 @@
     </div>
     <div class="nav">
       <div class="nav-section">Overview</div>
-      <div class="nav-item active" onclick="window.location.href='admin_dashboard.html'">
+      <div class="nav-item" onclick="window.location.href='admin_dashboard.html'">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
           <rect x="1" y="1" width="6" height="6" rx="1.5" />
           <rect x="9" y="1" width="6" height="6" rx="1.5" />
@@ -1012,7 +1012,7 @@
         </svg>
         Manage Flights
       </div>
-      <div class="nav-item" onclick="window.location.href='manage_bookings.html'">
+      <div class="nav-item active" onclick="window.location.href='manage_bookings.html'">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
           <rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="0.5" fill="none" />
           <rect x="2" y="4" width="12" height="3" rx="1.5 1.5 0 0" />
@@ -1032,7 +1032,7 @@
       </div>
     </div>
     <div class="sidebar-footer">
-      <div class="admin-pill" style="margin-bottom: 15px;">
+      <div class="admin-pill">
         <div class="avatar">SA</div>
         <div>
           <div class="admin-name">Super Admin</div>
@@ -1040,7 +1040,6 @@
               data-cfemail="49282d242027093a223026393a672027">[email&#160;protected]</a></div>
         </div>
       </div>
-      <button class="btn btn-outline" style="width: 100%; color: rgba(255, 255, 255, 0.7); border-color: rgba(255, 255, 255, 0.2);" onclick="window.location.href='index.html'">Logout</button>
     </div>
   </div>
 
@@ -1048,7 +1047,7 @@
   <div class="main">
     <div class="topbar">
       <div class="topbar-left">
-        <div id="page-title" class="page-title">Dashboard</div>
+        <div id="page-title" class="page-title">Manage Bookings</div>
       </div>
       <div class="topbar-right">
         <div class="search-input" style="position:relative;cursor:default">
@@ -1076,221 +1075,172 @@
 
     <div class="content">
 
-      <!-- ══════════════════ DASHBOARD ══════════════════ -->
-      <div class="section-tab active" id="tab-dashboard">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-label">Active Users</div>
-            <div class="stat-val">1,284</div>
-            <div class="stat-sub stat-up">↑ 12% from yesterday</div>
-            <div class="mini-chart">
-              <div class="bar" style="height:55%"></div>
-              <div class="bar" style="height:70%"></div>
-              <div class="bar" style="height:60%"></div>
-              <div class="bar" style="height:80%"></div>
-              <div class="bar" style="height:65%"></div>
-              <div class="bar today" style="height:100%"></div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Today's Bookings</div>
-            <div class="stat-val">347</div>
-            <div class="stat-sub stat-up">↑ 8% vs yesterday</div>
-            <div class="mini-chart">
-              <div class="bar" style="height:40%"></div>
-              <div class="bar" style="height:60%"></div>
-              <div class="bar" style="height:50%"></div>
-              <div class="bar" style="height:75%"></div>
-              <div class="bar" style="height:55%"></div>
-              <div class="bar today" style="height:85%"></div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Active Flights</div>
-            <div class="stat-val">42</div>
-            <div class="stat-sub stat-up">↑ 5 from last week</div>
-            <div class="mini-chart">
-              <div class="bar" style="height:70%"></div>
-              <div class="bar" style="height:60%"></div>
-              <div class="bar" style="height:80%"></div>
-              <div class="bar" style="height:65%"></div>
-              <div class="bar" style="height:75%"></div>
-              <div class="bar today" style="height:90%"></div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Cancellations Today</div>
-            <div class="stat-val">6</div>
-            <div class="stat-sub stat-down">↑ 2 more than avg</div>
-            <div class="mini-chart">
-              <div class="bar" style="height:20%"></div>
-              <div class="bar" style="height:15%"></div>
-              <div class="bar" style="height:25%"></div>
-              <div class="bar" style="height:18%"></div>
-              <div class="bar" style="height:20%"></div>
-              <div class="bar today" style="height:38%"></div>
-            </div>
+      >
+
+      >
+
+      >
+
+      <!-- ══════════════════ BOOKINGS ══════════════════ -->
+      <div class="section-tab active" id="tab-bookings">
+        <div class="sec-header">
+          <div class="filter-tabs" id="bookings-filter-tabs">
+            <div class="filter-tab active" data-filter="all" onclick="filterBookings(this, 'all')">All Bookings</div>
+            <div class="filter-tab" data-filter="confirmed" onclick="filterBookings(this, 'confirmed')">Confirmed</div>
+            <div class="filter-tab" data-filter="pending" onclick="filterBookings(this, 'pending')">Pending</div>
+            <div class="filter-tab" data-filter="cancelled" onclick="filterBookings(this, 'cancelled')">Cancelled</div>
           </div>
         </div>
-        <div class="two-col">
-          <div class="panel">
-            <div class="panel-head">
-              <div>
-                <div class="panel-title">Recent Bookings</div>
-                <div class="panel-subtitle">Last 5 transactions</div>
-              </div>
-              <button class="btn btn-outline btn-sm"
-                onclick="navigate('bookings', document.querySelector('[onclick*=bookings]'))">View all</button>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Booking ID</th>
-                  <th>Passenger</th>
-                  <th>Route</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="mono">#BK8821</td>
-                  <td>Priya Sharma</td>
-                  <td><span class="route-tag">DEL <span class="route-arrow">→</span> BOM</span></td>
-                  <td>₹8,400</td>
-                  <td><span class="pill pill-green">Confirmed</span></td>
-                </tr>
-                <tr>
-                  <td class="mono">#BK8820</td>
-                  <td>Rahul Mehta</td>
-                  <td><span class="route-tag">BOM <span class="route-arrow">→</span> BLR</span></td>
-                  <td>₹3,200</td>
-                  <td><span class="pill pill-amber">Pending</span></td>
-                </tr>
-                <tr>
-                  <td class="mono">#BK8819</td>
-                  <td>Anjali Verma</td>
-                  <td><span class="route-tag">DEL <span class="route-arrow">→</span> CCU</span></td>
-                  <td>₹5,800</td>
-                  <td><span class="pill pill-green">Confirmed</span></td>
-                </tr>
-                <tr>
-                  <td class="mono">#BK8817</td>
-                  <td>Vikram Nair</td>
-                  <td><span class="route-tag">HYD <span class="route-arrow">→</span> DEL</span></td>
-                  <td>₹4,100</td>
-                  <td><span class="pill pill-red">Cancelled</span></td>
-                </tr>
-                <tr>
-                  <td class="mono">#BK8815</td>
-                  <td>Deepa Iyer</td>
-                  <td><span class="route-tag">MAA <span class="route-arrow">→</span> CCU</span></td>
-                  <td>₹18,700</td>
-                  <td><span class="pill pill-green">Confirmed</span></td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="three-col">
+          <div class="stat-card">
+            <div class="stat-label">Total Bookings</div>
+            <div class="stat-val">5,821</div>
+            <div class="stat-sub stat-up">↑ 12% this month</div>
           </div>
-          <div class="panel">
-            <div class="panel-head">
-              <div>
-                <div class="panel-title">Flight Status Overview</div>
-                <div class="panel-subtitle">Today's schedule</div>
-              </div>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Flight</th>
-                  <th>Route</th>
-                  <th>Seats</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="font-weight:600">6E-204</td>
-                  <td><span class="route-tag">DEL <span class="route-arrow">→</span> BOM</span></td>
-                  <td><span style="color:var(--green-600);font-weight:500">42/180</span></td>
-                  <td><span class="pill pill-green">On Time</span></td>
-                </tr>
-                <tr>
-                  <td style="font-weight:600">AI-302</td>
-                  <td><span class="route-tag">BOM <span class="route-arrow">→</span> BLR</span></td>
-                  <td><span style="color:var(--amber-600);font-weight:500">8/220</span></td>
-                  <td><span class="pill pill-amber">Delayed</span></td>
-                </tr>
-                <tr>
-                  <td style="font-weight:600">SG-410</td>
-                  <td><span class="route-tag">HYD <span class="route-arrow">→</span> DEL</span></td>
-                  <td><span style="color:var(--red-600);font-weight:500">0/160</span></td>
-                  <td><span class="pill pill-red">Full</span></td>
-                </tr>
-                <tr>
-                  <td style="font-weight:600">UK-834</td>
-                  <td><span class="route-tag">MAA <span class="route-arrow">→</span> CCU</span></td>
-                  <td><span style="color:var(--green-600);font-weight:500">61/150</span></td>
-                  <td><span class="pill pill-green">On Time</span></td>
-                </tr>
-                <tr>
-                  <td style="font-weight:600">I5-706</td>
-                  <td><span class="route-tag">BLR <span class="route-arrow">→</span> PNQ</span></td>
-                  <td><span style="color:var(--green-600);font-weight:500">33/120</span></td>
-                  <td><span class="pill pill-green">On Time</span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="stat-card">
+            <div class="stat-label">Revenue Today</div>
+            <div class="stat-val">₹2.4L</div>
+            <div class="stat-sub stat-up">↑ 8% vs yesterday</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Cancellation Rate</div>
+            <div class="stat-val">3.2%</div>
+            <div class="stat-sub stat-down">↑ 0.4% this week</div>
           </div>
         </div>
         <div class="panel">
           <div class="panel-head">
-            <div class="panel-title">Recent Activity</div>
+            <div class="panel-title">All Bookings</div>
+            <div class="panel-subtitle">Complete booking records with class, seat, and payment details</div>
           </div>
-          <div class="activity-list">
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--green-600)"></div>
-              <div>
-                <div class="activity-text">Flight 6E-204 (DEL→BOM) departed on time with 138 passengers aboard.</div>
-                <div class="activity-time">2 hours ago</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--amber-600)"></div>
-              <div>
-                <div class="activity-text">AI-302 delayed by 45 minutes due to crew scheduling — new ETD 10:00.</div>
-                <div class="activity-time">1 hour ago</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--red-600)"></div>
-              <div>
-                <div class="activity-text">Booking #BK8817 cancelled by passenger Vikram Nair. Refund initiated.</div>
-                <div class="activity-time">45 min ago</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--blue-800)"></div>
-              <div>
-                <div class="activity-text">New carrier registered: Star Air. 3 routes added for April 2025.</div>
-                <div class="activity-time">30 min ago</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--green-600)"></div>
-              <div>
-                <div class="activity-text">UK-834 (MAA→CCU) check-in opened. 61 seats still available.</div>
-                <div class="activity-time">15 min ago</div>
-              </div>
-            </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Passenger</th>
+                <th>Flight No.</th>
+                <th>Route</th>
+                <th>Date</th>
+                <th>Class</th>
+                <th>Seat</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-table-body">
+              <tr data-status="confirmed">
+                <td class="mono">#BK8821</td>
+                <td>Priya Sharma</td>
+                <td style="font-weight:600">6E-204</td>
+                <td><span class="route-tag">DEL <span class="route-arrow">→</span> BOM</span></td>
+                <td style="color:var(--text-muted);font-size:12px">26 Mar 2025</td>
+                <td><span class="pill pill-plat">Business</span></td>
+                <td style="font-family:var(--font-mono);font-size:12px">12A</td>
+                <td style="font-weight:500">₹8,400</td>
+                <td><span id="status-BK8821" class="pill pill-green">Confirmed</span></td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm">View</button><button
+                      class="btn btn-danger btn-sm" onclick="cancelBooking('BK8821')">Cancel</button></div>
+                </td>
+              </tr>
+              <tr data-status="pending">
+                <td class="mono">#BK8820</td>
+                <td>Rahul Mehta</td>
+                <td style="font-weight:600">AI-302</td>
+                <td><span class="route-tag">BOM <span class="route-arrow">→</span> BLR</span></td>
+                <td style="color:var(--text-muted);font-size:12px">26 Mar 2025</td>
+                <td><span class="pill pill-gray">Economy</span></td>
+                <td style="font-family:var(--font-mono);font-size:12px">24F</td>
+                <td style="font-weight:500">₹3,200</td>
+                <td><span id="status-BK8820" class="pill pill-amber">Pending</span></td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm">View</button><button id="action-BK8820"
+                      class="btn btn-outline btn-sm" onclick="confirmBooking('BK8820')">Confirm</button></div>
+                </td>
+              </tr>
+              <tr data-status="confirmed">
+                <td class="mono">#BK8819</td>
+                <td>Anjali Verma</td>
+                <td style="font-weight:600">6E-204</td>
+                <td><span class="route-tag">DEL <span class="route-arrow">→</span> BOM</span></td>
+                <td style="color:var(--text-muted);font-size:12px">26 Mar 2025</td>
+                <td><span class="pill pill-gray">Economy</span></td>
+                <td style="font-family:var(--font-mono);font-size:12px">15C</td>
+                <td style="font-weight:500">₹5,800</td>
+                <td><span id="status-BK8819" class="pill pill-green">Confirmed</span></td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm">View</button><button
+                      class="btn btn-danger btn-sm" onclick="cancelBooking('BK8819')">Cancel</button></div>
+                </td>
+              </tr>
+              <tr data-status="cancelled">
+                <td class="mono">#BK8817</td>
+                <td>Vikram Nair</td>
+                <td style="font-weight:600">SG-410</td>
+                <td><span class="route-tag">HYD <span class="route-arrow">→</span> DEL</span></td>
+                <td style="color:var(--text-muted);font-size:12px">26 Mar 2025</td>
+                <td><span class="pill pill-gray">Economy</span></td>
+                <td style="font-family:var(--font-mono);font-size:12px">8C</td>
+                <td style="font-weight:500">₹4,100</td>
+                <td><span class="pill pill-red">Cancelled</span></td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm">View</button></div>
+                </td>
+              </tr>
+              <tr data-status="confirmed">
+                <td class="mono">#BK8815</td>
+                <td>Deepa Iyer</td>
+                <td style="font-weight:600">UK-834</td>
+                <td><span class="route-tag">MAA <span class="route-arrow">→</span> CCU</span></td>
+                <td style="color:var(--text-muted);font-size:12px">25 Mar 2025</td>
+                <td><span class="pill pill-blue">First</span></td>
+                <td style="font-family:var(--font-mono);font-size:12px">2A</td>
+                <td style="font-weight:500">₹18,700</td>
+                <td><span id="status-BK8815" class="pill pill-green">Confirmed</span></td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm">View</button><button
+                      class="btn btn-danger btn-sm" onclick="cancelBooking('BK8815')">Cancel</button></div>
+                </td>
+              </tr>
+              <tr data-status="confirmed">
+                <td class="mono">#BK8812</td>
+                <td>Arjun Pillai</td>
+                <td style="font-weight:600">I5-706</td>
+                <td><span class="route-tag">BLR <span class="route-arrow">→</span> PNQ</span></td>
+                <td style="color:var(--text-muted);font-size:12px">25 Mar 2025</td>
+                <td><span class="pill pill-gray">Economy</span></td>
+                <td style="font-family:var(--font-mono);font-size:12px">33D</td>
+                <td style="font-weight:500">₹2,800</td>
+                <td><span id="status-BK8812" class="pill pill-green">Confirmed</span></td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm">View</button><button
+                      class="btn btn-danger btn-sm" onclick="cancelBooking('BK8812')">Cancel</button></div>
+                </td>
+              </tr>
+              <tr data-status="pending">
+                <td class="mono">#BK8809</td>
+                <td>Sneha Kulkarni</td>
+                <td style="font-weight:600">AI-302</td>
+                <td><span class="route-tag">BOM <span class="route-arrow">→</span> BLR</span></td>
+                <td style="color:var(--text-muted);font-size:12px">27 Mar 2025</td>
+                <td><span class="pill pill-gray">Economy</span></td>
+                <td style="font-family:var(--font-mono);font-size:12px">18B</td>
+                <td style="font-weight:500">₹3,500</td>
+                <td><span id="status-BK8809" class="pill pill-amber">Pending</span></td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm">View</button><button id="action-BK8809"
+                      class="btn btn-outline btn-sm" onclick="confirmBooking('BK8809')">Confirm</button></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="bookings-empty" class="empty-state" style="display:none">
+            <div class="empty-state-icon">🗒️</div>
+            No bookings found for this filter.
           </div>
         </div>
       </div>
-
-      >
-
-      >
-
-      >
 
       >
 
@@ -1609,7 +1559,7 @@
     const pageTitles = { dashboard: 'Dashboard', users: 'Manage Users', flights: 'Manage Flights', bookings: 'Manage Bookings', carriers: 'Manage Carriers' };
     const topActions = { dashboard: null, users: null, flights: null, bookings: null, carriers: null };
     const topModalMap = { flights: 'schedule-modal', bookings: 'add-booking-modal', carriers: 'add-carrier-modal' };
-    let currentSection = 'dashboard';
+    let currentSection = 'bookings';
 
     function navigate(section, el) {
       document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));

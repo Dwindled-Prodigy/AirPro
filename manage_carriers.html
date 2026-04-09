@@ -987,7 +987,7 @@
     </div>
     <div class="nav">
       <div class="nav-section">Overview</div>
-      <div class="nav-item active" onclick="window.location.href='admin_dashboard.html'">
+      <div class="nav-item" onclick="window.location.href='admin_dashboard.html'">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
           <rect x="1" y="1" width="6" height="6" rx="1.5" />
           <rect x="9" y="1" width="6" height="6" rx="1.5" />
@@ -1021,7 +1021,7 @@
         </svg>
         Manage Bookings
       </div>
-      <div class="nav-item" onclick="window.location.href='manage_carriers.html'">
+      <div class="nav-item active" onclick="window.location.href='manage_carriers.html'">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
           <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="0.5" fill="none" />
           <rect x="1" y="3" width="14" height="3" rx="2 2 0 0" />
@@ -1032,7 +1032,7 @@
       </div>
     </div>
     <div class="sidebar-footer">
-      <div class="admin-pill" style="margin-bottom: 15px;">
+      <div class="admin-pill">
         <div class="avatar">SA</div>
         <div>
           <div class="admin-name">Super Admin</div>
@@ -1040,7 +1040,6 @@
               data-cfemail="49282d242027093a223026393a672027">[email&#160;protected]</a></div>
         </div>
       </div>
-      <button class="btn btn-outline" style="width: 100%; color: rgba(255, 255, 255, 0.7); border-color: rgba(255, 255, 255, 0.2);" onclick="window.location.href='index.html'">Logout</button>
     </div>
   </div>
 
@@ -1048,7 +1047,7 @@
   <div class="main">
     <div class="topbar">
       <div class="topbar-left">
-        <div id="page-title" class="page-title">Dashboard</div>
+        <div id="page-title" class="page-title">Manage Carriers</div>
       </div>
       <div class="topbar-right">
         <div class="search-input" style="position:relative;cursor:default">
@@ -1076,223 +1075,229 @@
 
     <div class="content">
 
-      <!-- ══════════════════ DASHBOARD ══════════════════ -->
-      <div class="section-tab active" id="tab-dashboard">
+      >
+
+      >
+
+      >
+
+      >
+
+      <!-- ══════════════════ CARRIERS ══════════════════ -->
+      <div class="section-tab active" id="tab-carriers">
+        <div class="sec-header">
+          <div class="filter-tabs" id="carriers-filter-tabs">
+            <div class="filter-tab active" data-filter="all" onclick="filterCarriers(this, 'all')">All Carriers</div>
+            <div class="filter-tab" data-filter="active" onclick="filterCarriers(this, 'active')">Active</div>
+            <div class="filter-tab" data-filter="delayed" onclick="filterCarriers(this, 'delayed')">Delayed</div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="openModal('add-carrier-modal')">+ Add Carrier</button>
+        </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-label">Active Users</div>
-            <div class="stat-val">1,284</div>
-            <div class="stat-sub stat-up">↑ 12% from yesterday</div>
-            <div class="mini-chart">
-              <div class="bar" style="height:55%"></div>
-              <div class="bar" style="height:70%"></div>
-              <div class="bar" style="height:60%"></div>
-              <div class="bar" style="height:80%"></div>
-              <div class="bar" style="height:65%"></div>
-              <div class="bar today" style="height:100%"></div>
-            </div>
+            <div class="stat-label">Total Carriers</div>
+            <div class="stat-val">8</div>
+            <div class="stat-sub stat-up">↑ 1 new this month</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Today's Bookings</div>
-            <div class="stat-val">347</div>
-            <div class="stat-sub stat-up">↑ 8% vs yesterday</div>
-            <div class="mini-chart">
-              <div class="bar" style="height:40%"></div>
-              <div class="bar" style="height:60%"></div>
-              <div class="bar" style="height:50%"></div>
-              <div class="bar" style="height:75%"></div>
-              <div class="bar" style="height:55%"></div>
-              <div class="bar today" style="height:85%"></div>
-            </div>
+            <div class="stat-label">Total Active Flights</div>
+            <div class="stat-val">66</div>
+            <div class="stat-sub stat-neutral">Across all carriers</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Active Flights</div>
-            <div class="stat-val">42</div>
-            <div class="stat-sub stat-up">↑ 5 from last week</div>
-            <div class="mini-chart">
-              <div class="bar" style="height:70%"></div>
-              <div class="bar" style="height:60%"></div>
-              <div class="bar" style="height:80%"></div>
-              <div class="bar" style="height:65%"></div>
-              <div class="bar" style="height:75%"></div>
-              <div class="bar today" style="height:90%"></div>
-            </div>
+            <div class="stat-label">Total Routes</div>
+            <div class="stat-val">34</div>
+            <div class="stat-sub stat-up">↑ 3 new routes</div>
           </div>
           <div class="stat-card">
-            <div class="stat-label">Cancellations Today</div>
-            <div class="stat-val">6</div>
-            <div class="stat-sub stat-down">↑ 2 more than avg</div>
-            <div class="mini-chart">
-              <div class="bar" style="height:20%"></div>
-              <div class="bar" style="height:15%"></div>
-              <div class="bar" style="height:25%"></div>
-              <div class="bar" style="height:18%"></div>
-              <div class="bar" style="height:20%"></div>
-              <div class="bar today" style="height:38%"></div>
-            </div>
-          </div>
-        </div>
-        <div class="two-col">
-          <div class="panel">
-            <div class="panel-head">
-              <div>
-                <div class="panel-title">Recent Bookings</div>
-                <div class="panel-subtitle">Last 5 transactions</div>
-              </div>
-              <button class="btn btn-outline btn-sm"
-                onclick="navigate('bookings', document.querySelector('[onclick*=bookings]'))">View all</button>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Booking ID</th>
-                  <th>Passenger</th>
-                  <th>Route</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="mono">#BK8821</td>
-                  <td>Priya Sharma</td>
-                  <td><span class="route-tag">DEL <span class="route-arrow">→</span> BOM</span></td>
-                  <td>₹8,400</td>
-                  <td><span class="pill pill-green">Confirmed</span></td>
-                </tr>
-                <tr>
-                  <td class="mono">#BK8820</td>
-                  <td>Rahul Mehta</td>
-                  <td><span class="route-tag">BOM <span class="route-arrow">→</span> BLR</span></td>
-                  <td>₹3,200</td>
-                  <td><span class="pill pill-amber">Pending</span></td>
-                </tr>
-                <tr>
-                  <td class="mono">#BK8819</td>
-                  <td>Anjali Verma</td>
-                  <td><span class="route-tag">DEL <span class="route-arrow">→</span> CCU</span></td>
-                  <td>₹5,800</td>
-                  <td><span class="pill pill-green">Confirmed</span></td>
-                </tr>
-                <tr>
-                  <td class="mono">#BK8817</td>
-                  <td>Vikram Nair</td>
-                  <td><span class="route-tag">HYD <span class="route-arrow">→</span> DEL</span></td>
-                  <td>₹4,100</td>
-                  <td><span class="pill pill-red">Cancelled</span></td>
-                </tr>
-                <tr>
-                  <td class="mono">#BK8815</td>
-                  <td>Deepa Iyer</td>
-                  <td><span class="route-tag">MAA <span class="route-arrow">→</span> CCU</span></td>
-                  <td>₹18,700</td>
-                  <td><span class="pill pill-green">Confirmed</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="panel">
-            <div class="panel-head">
-              <div>
-                <div class="panel-title">Flight Status Overview</div>
-                <div class="panel-subtitle">Today's schedule</div>
-              </div>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Flight</th>
-                  <th>Route</th>
-                  <th>Seats</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="font-weight:600">6E-204</td>
-                  <td><span class="route-tag">DEL <span class="route-arrow">→</span> BOM</span></td>
-                  <td><span style="color:var(--green-600);font-weight:500">42/180</span></td>
-                  <td><span class="pill pill-green">On Time</span></td>
-                </tr>
-                <tr>
-                  <td style="font-weight:600">AI-302</td>
-                  <td><span class="route-tag">BOM <span class="route-arrow">→</span> BLR</span></td>
-                  <td><span style="color:var(--amber-600);font-weight:500">8/220</span></td>
-                  <td><span class="pill pill-amber">Delayed</span></td>
-                </tr>
-                <tr>
-                  <td style="font-weight:600">SG-410</td>
-                  <td><span class="route-tag">HYD <span class="route-arrow">→</span> DEL</span></td>
-                  <td><span style="color:var(--red-600);font-weight:500">0/160</span></td>
-                  <td><span class="pill pill-red">Full</span></td>
-                </tr>
-                <tr>
-                  <td style="font-weight:600">UK-834</td>
-                  <td><span class="route-tag">MAA <span class="route-arrow">→</span> CCU</span></td>
-                  <td><span style="color:var(--green-600);font-weight:500">61/150</span></td>
-                  <td><span class="pill pill-green">On Time</span></td>
-                </tr>
-                <tr>
-                  <td style="font-weight:600">I5-706</td>
-                  <td><span class="route-tag">BLR <span class="route-arrow">→</span> PNQ</span></td>
-                  <td><span style="color:var(--green-600);font-weight:500">33/120</span></td>
-                  <td><span class="pill pill-green">On Time</span></td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="stat-label">Avg On-Time Rate</div>
+            <div class="stat-val">87%</div>
+            <div class="stat-sub stat-up">↑ 2% vs last month</div>
           </div>
         </div>
         <div class="panel">
           <div class="panel-head">
-            <div class="panel-title">Recent Activity</div>
+            <div class="panel-title">Carrier Management</div>
+            <div class="panel-subtitle">Airlines, routes, flight status and recent activity</div>
           </div>
-          <div class="activity-list">
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--green-600)"></div>
-              <div>
-                <div class="activity-text">Flight 6E-204 (DEL→BOM) departed on time with 138 passengers aboard.</div>
-                <div class="activity-time">2 hours ago</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--amber-600)"></div>
-              <div>
-                <div class="activity-text">AI-302 delayed by 45 minutes due to crew scheduling — new ETD 10:00.</div>
-                <div class="activity-time">1 hour ago</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--red-600)"></div>
-              <div>
-                <div class="activity-text">Booking #BK8817 cancelled by passenger Vikram Nair. Refund initiated.</div>
-                <div class="activity-time">45 min ago</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--blue-800)"></div>
-              <div>
-                <div class="activity-text">New carrier registered: Star Air. 3 routes added for April 2025.</div>
-                <div class="activity-time">30 min ago</div>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="activity-dot" style="background:var(--green-600)"></div>
-              <div>
-                <div class="activity-text">UK-834 (MAA→CCU) check-in opened. 61 seats still available.</div>
-                <div class="activity-time">15 min ago</div>
-              </div>
-            </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Carrier</th>
+                <th>Code</th>
+                <th>Active Flights</th>
+                <th>Total Fleet</th>
+                <th>Routes</th>
+                <th>On-Time Rate</th>
+                <th>Status</th>
+                <th>Recent Activity</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="carriers-table-body">
+              <tr data-status="active">
+                <td>
+                  <div class="carrier-name">
+                    <div class="carrier-badge" style="background:var(--blue-50);color:var(--blue-800)">6E</div>
+                    <div>
+                      <div style="font-weight:600">IndiGo</div>
+                      <div style="font-size:11px;color:var(--text-hint)">InterGlobe Aviation</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono">IATA: 6E</td>
+                <td><span style="color:var(--green-600);font-weight:600">24</span></td>
+                <td>38</td>
+                <td>12 routes</td>
+                <td>
+                  <div style="font-size:12px;font-weight:500;color:var(--green-600)">92%</div>
+                  <div class="prog-bar" style="width:80px">
+                    <div class="prog-fill" style="width:92%;background:var(--green-200)"></div>
+                  </div>
+                </td>
+                <td><span id="carrier-status-6E" class="pill pill-green">Active</span></td>
+                <td style="font-size:11px;color:var(--text-muted);max-width:160px">6E-204 departed on time · 2h ago</td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm"
+                      onclick="showToast('Managing IndiGo carrier','success')">Manage</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="suspendCarrier(this,'IndiGo','6E')">Suspend</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="showToast('IndiGo details opened','success')">Details</button></div>
+                </td>
+              </tr>
+              <tr data-status="delayed">
+                <td>
+                  <div class="carrier-name">
+                    <div class="carrier-badge" style="background:var(--coral-50);color:var(--coral-600)">AI</div>
+                    <div>
+                      <div style="font-weight:600">Air India</div>
+                      <div style="font-size:11px;color:var(--text-hint)">Air India Ltd.</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono">IATA: AI</td>
+                <td><span style="color:var(--green-600);font-weight:600">18</span></td>
+                <td>30</td>
+                <td>9 routes</td>
+                <td>
+                  <div style="font-size:12px;font-weight:500;color:var(--amber-600)">78%</div>
+                  <div class="prog-bar" style="width:80px">
+                    <div class="prog-fill" style="width:78%;background:#FAC775"></div>
+                  </div>
+                </td>
+                <td><span id="carrier-status-AI" class="pill pill-amber">Delayed</span></td>
+                <td style="font-size:11px;color:var(--text-muted);max-width:160px">AI-302 delayed 45 min · 1h ago</td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm"
+                      onclick="showToast('Managing Air India carrier','success')">Manage</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="suspendCarrier(this,'Air India','AI')">Suspend</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="showToast('Air India details opened','success')">Details</button></div>
+                </td>
+              </tr>
+              <tr data-status="active">
+                <td>
+                  <div class="carrier-name">
+                    <div class="carrier-badge" style="background:var(--amber-50);color:var(--amber-600)">SG</div>
+                    <div>
+                      <div style="font-weight:600">SpiceJet</div>
+                      <div style="font-size:11px;color:var(--text-hint)">SpiceJet Ltd.</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono">IATA: SG</td>
+                <td><span style="color:var(--green-600);font-weight:600">10</span></td>
+                <td>22</td>
+                <td>7 routes</td>
+                <td>
+                  <div style="font-size:12px;font-weight:500;color:var(--green-600)">84%</div>
+                  <div class="prog-bar" style="width:80px">
+                    <div class="prog-fill" style="width:84%;background:var(--green-200)"></div>
+                  </div>
+                </td>
+                <td><span id="carrier-status-SG" class="pill pill-green">Active</span></td>
+                <td style="font-size:11px;color:var(--text-muted);max-width:160px">SG-410 fully booked · 30m ago</td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm"
+                      onclick="showToast('Managing SpiceJet carrier','success')">Manage</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="suspendCarrier(this,'SpiceJet','SG')">Suspend</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="showToast('SpiceJet details opened','success')">Details</button></div>
+                </td>
+              </tr>
+              <tr data-status="active">
+                <td>
+                  <div class="carrier-name">
+                    <div class="carrier-badge" style="background:var(--purple-50);color:var(--purple-600)">UK</div>
+                    <div>
+                      <div style="font-weight:600">Vistara</div>
+                      <div style="font-size:11px;color:var(--text-hint)">TATA SIA Airlines</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono">IATA: UK</td>
+                <td><span style="color:var(--green-600);font-weight:600">14</span></td>
+                <td>20</td>
+                <td>6 routes</td>
+                <td>
+                  <div style="font-size:12px;font-weight:500;color:var(--green-600)">96%</div>
+                  <div class="prog-bar" style="width:80px">
+                    <div class="prog-fill" style="width:96%;background:var(--green-200)"></div>
+                  </div>
+                </td>
+                <td><span id="carrier-status-UK" class="pill pill-green">Active</span></td>
+                <td style="font-size:11px;color:var(--text-muted);max-width:160px">UK-834 check-in open · 15m ago</td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm"
+                      onclick="showToast('Managing Vistara carrier','success')">Manage</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="suspendCarrier(this,'Vistara','UK')">Suspend</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="showToast('Vistara details opened','success')">Details</button></div>
+                </td>
+              </tr>
+              <tr data-status="active">
+                <td>
+                  <div class="carrier-name">
+                    <div class="carrier-badge" style="background:var(--teal-50);color:var(--teal-600)">I5</div>
+                    <div>
+                      <div style="font-weight:600">Air Asia India</div>
+                      <div style="font-size:11px;color:var(--text-hint)">Air Asia (India) Ltd.</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="mono">IATA: I5</td>
+                <td><span style="color:var(--green-600);font-weight:600">10</span></td>
+                <td>16</td>
+                <td>5 routes</td>
+                <td>
+                  <div style="font-size:12px;font-weight:500;color:var(--green-600)">89%</div>
+                  <div class="prog-bar" style="width:80px">
+                    <div class="prog-fill" style="width:89%;background:var(--green-200)"></div>
+                  </div>
+                </td>
+                <td><span id="carrier-status-I5" class="pill pill-green">Active</span></td>
+                <td style="font-size:11px;color:var(--text-muted);max-width:160px">I5-706 boarding soon · 5m ago</td>
+                <td>
+                  <div class="act-group"><button class="btn btn-info btn-sm"
+                      onclick="showToast('Managing Air Asia India carrier','success')">Manage</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="suspendCarrier(this,'Air Asia India','I5')">Suspend</button><button
+                      class="btn btn-outline btn-sm"
+                      onclick="showToast('Air Asia India details opened','success')">Details</button></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div id="carriers-empty" class="empty-state" style="display:none">
+            <div class="empty-state-icon">🏢</div>
+            No carriers found for this filter.
           </div>
         </div>
       </div>
-
-      >
-
-      >
-
-      >
-
-      >
 
     </div>
   </div>
@@ -1609,7 +1614,7 @@
     const pageTitles = { dashboard: 'Dashboard', users: 'Manage Users', flights: 'Manage Flights', bookings: 'Manage Bookings', carriers: 'Manage Carriers' };
     const topActions = { dashboard: null, users: null, flights: null, bookings: null, carriers: null };
     const topModalMap = { flights: 'schedule-modal', bookings: 'add-booking-modal', carriers: 'add-carrier-modal' };
-    let currentSection = 'dashboard';
+    let currentSection = 'carriers';
 
     function navigate(section, el) {
       document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));

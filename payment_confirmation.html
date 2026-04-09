@@ -81,7 +81,7 @@
             overflow: hidden;
             border: 1px solid rgba(195, 198, 215, 0.2);
         }
-        
+
         .section-header {
             background: #f8fafc;
             padding: 12px 24px;
@@ -94,13 +94,18 @@
         }
 
         @media print {
-            header, footer, .no-print {
+
+            header,
+            footer,
+            .no-print {
                 display: none !important;
             }
+
             .confirmation-card {
                 box-shadow: none;
                 border: 1px solid #ccc;
             }
+
             body {
                 background: white;
             }
@@ -117,37 +122,48 @@
                 AIRPRO
             </div>
             <nav class="hidden md:flex items-center space-x-8 font-manrope tracking-tight font-medium text-sm">
-                <button class="text-slate-600 hover:text-blue-600 transition-colors" onclick="window.location.href='index.html'">Home</button>
+                <button class="text-slate-600 hover:text-blue-600 transition-colors"
+                    onclick="window.location.href='index.html'">Home</button>
                 <button class="text-slate-600 hover:text-blue-600 transition-colors" onclick="void(0)">Flights</button>
-                <button class="text-slate-600 hover:text-blue-600 transition-colors" onclick="void(0)">Bookings</button>
+                <button class="text-slate-600 hover:text-blue-600 transition-colors" onclick="window.location.href='tickets.html'">Bookings</button>
             </nav>
             <div class="flex items-center space-x-4">
                 <div class="relative" id="profile-container">
-                    <button class="flex items-center gap-2 p-1 pl-3 h-10 rounded-full hover:bg-slate-100 transition-all border border-outline-variant/20 text-slate-600 hover:text-primary" 
-                            onclick="handleProfileClick()" id="profile-trigger" title="Account">
-                        <span id="trigger-label" class="text-xs font-semibold font-body hidden">Login / Sign Up</span>
-                        <span id="trigger-icon" class="material-symbols-outlined align-middle" data-icon="account_circle">account_circle</span>
+                    <button
+                        class="flex items-center gap-2 p-1 pl-3 h-10 rounded-full hover:bg-slate-100 transition-all border border-outline-variant/20 text-slate-600 hover:text-primary"
+                        onclick="handleProfileClick()" id="profile-trigger" title="Account">
+                        <span id="trigger-label" class="text-xs font-semibold font-body hidden"></span>
+                        <span id="trigger-icon" class="material-symbols-outlined align-middle"
+                            data-icon="account_circle">account_circle</span>
                     </button>
-                    
+
                     <!-- Profile Popup -->
                     <div class="absolute right-0 mt-3 w-80 bg-surface-container-lowest rounded-lg shadow-xl ring-1 ring-on-surface/5 z-50 overflow-hidden"
                         id="profile-popup">
                         <div class="px-5 py-4 flex items-center gap-4 bg-surface-container-low/50">
-                            <div class="w-12 h-12 rounded-full border-2 border-primary/10 flex items-center justify-center bg-white text-primary">
+                            <div
+                                class="w-12 h-12 rounded-full border-2 border-primary/10 flex items-center justify-center bg-white text-primary">
                                 <span class="material-symbols-outlined text-3xl">account_circle</span>
                             </div>
                             <div class="flex flex-col">
-                                <span id="popup-name" class="font-manrope text-base font-bold text-on-surface tracking-tight">Guest User</span>
-                                <span id="popup-email" class="font-body text-xs text-on-surface-variant font-medium">customer@airpro.com</span>
+                                <span id="popup-name"
+                                    class="font-manrope text-base font-bold text-on-surface tracking-tight">Guest
+                                    User</span>
+                                <span id="popup-email" class="font-body text-xs text-on-surface-variant font-medium"><a
+                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                        data-cfemail="02617771766d6f677042636b7072706d2c616d6f">[email&#160;protected]</a></span>
                             </div>
                         </div>
                         <div class="py-2">
-                            <a class="flex items-center gap-3 px-5 py-3 text-sm font-medium text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all group" href="user_dashboard.html">
+                            <a class="flex items-center gap-3 px-5 py-3 text-sm font-medium text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all group"
+                                href="user_dashboard.html">
                                 <span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
                                 <span class="font-body">View Profile</span>
                             </a>
-                            <a class="flex items-center gap-3 px-5 py-3 text-sm font-medium text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all group" href="tickets.html">
-                                <span class="material-symbols-outlined text-[20px]" data-icon="airplane_ticket">airplane_ticket</span>
+                            <a class="flex items-center gap-3 px-5 py-3 text-sm font-medium text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all group"
+                                href="tickets.html">
+                                <span class="material-symbols-outlined text-[20px]"
+                                    data-icon="airplane_ticket">airplane_ticket</span>
                                 <span class="font-body">My Bookings</span>
                             </a>
                         </div>
@@ -166,11 +182,13 @@
 
     <main class="flex-grow container mx-auto px-6 py-12 max-w-4xl">
         <div class="text-center mb-10 no-print">
-            <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 text-green-600 rounded-full mb-4">
+            <div
+                class="inline-flex items-center justify-center w-20 h-20 bg-green-100 text-green-600 rounded-full mb-4">
                 <span class="material-symbols-outlined text-4xl">check_circle</span>
             </div>
             <h1 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Booking Confirmed!</h1>
-            <p class="text-on-surface-variant mt-2 font-medium">Your tickets have been issued and sent to your email.</p>
+            <p class="text-on-surface-variant mt-2 font-medium">Your tickets have been issued and sent to your email.
+            </p>
         </div>
 
         <div class="confirmation-card">
@@ -235,7 +253,8 @@
                     <div class="overflow-x-auto">
                         <table class="w-full text-left font-body" id="passengerTable">
                             <thead>
-                                <tr class="text-[10px] font-black text-outline uppercase tracking-widest border-b border-outline-variant/30">
+                                <tr
+                                    class="text-[10px] font-black text-outline uppercase tracking-widest border-b border-outline-variant/30">
                                     <th class="py-3 px-2">#</th>
                                     <th class="py-3 px-2">Name</th>
                                     <th class="py-3 px-2">Gender</th>
@@ -268,11 +287,15 @@
         </div>
 
         <div class="mt-8 flex flex-col md:flex-row gap-4 no-print">
-            <button class="flex-1 py-4 bg-primary text-white font-bold rounded-lg shadow-lg hover:opacity-95 transition-all flex items-center justify-center gap-2" onclick="printPage()">
+            <button
+                class="flex-1 py-4 bg-primary text-white font-bold rounded-lg shadow-lg hover:opacity-95 transition-all flex items-center justify-center gap-2"
+                onclick="printPage()">
                 <span class="material-symbols-outlined">print</span>
                 Download / Print Ticket
             </button>
-            <button class="flex-1 py-4 bg-white border border-outline-variant/40 text-on-surface font-bold rounded-lg hover:bg-surface-container-low transition-all" onclick="window.location.href='index.html'">
+            <button
+                class="flex-1 py-4 bg-white border border-outline-variant/40 text-on-surface font-bold rounded-lg hover:bg-surface-container-low transition-all"
+                onclick="window.location.href='index.html'">
                 Return to Search
             </button>
         </div>
@@ -288,13 +311,17 @@
                 </p>
             </div>
             <div class="flex space-x-8 font-inter text-xs tracking-wide">
-                <button class="text-slate-500 hover:text-blue-700 transition-colors" onclick="window.location.href='footers/privacy_policy.html'">Privacy Policy</button>
-                <button class="text-slate-500 hover:text-blue-700 transition-colors" onclick="window.location.href='footers/T&C.html'">Terms of Service</button>
-                <button class="text-slate-500 hover:text-blue-700 transition-colors" onclick="window.location.href='footers/support.html'">Support</button>
+                <button class="text-slate-500 hover:text-blue-700 transition-colors"
+                    onclick="window.location.href='footers/privacy_policy.html'">Privacy Policy</button>
+                <button class="text-slate-500 hover:text-blue-700 transition-colors"
+                    onclick="window.location.href='footers/T&C.html'">Terms of Service</button>
+                <button class="text-slate-500 hover:text-blue-700 transition-colors"
+                    onclick="window.location.href='footers/support.html'">Support</button>
             </div>
         </div>
     </footer>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         const defaultData = {
             pnr: "PNR457281",
@@ -309,21 +336,27 @@
             class: "Economy",
             fare: 3200,
             passenger: [
-                {name: "Darshan", age: 21, gender: "male", seat: "14A"},
-                {name: "Anil Kumar", age: 32, gender: "Male", seat: "14B"}
+                { name: "Darshan", age: 21, gender: "male", seat: "14A" },
+                { name: "Anil Kumar", age: 32, gender: "Male", seat: "14B" }
             ]
         };
 
         window.addEventListener('load', () => {
+            // Prevent going back to payment, redirect to home instead
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.location.replace("index.html");
+            };
+
             let data = defaultData;
-            
+
             // Try to load dynamic data
             const lastBooking = localStorage.getItem('airpro_last_confirmation');
             if (lastBooking) {
                 const b = JSON.parse(lastBooking);
                 const fromCity = b.route.split(' → ')[0] || b.route;
                 const toCity = b.route.split(' → ')[1] || b.route;
-                
+
                 data = {
                     pnr: b.pnr,
                     bookingId: b.bookingId,
@@ -366,7 +399,7 @@
             });
 
             document.getElementById("disp-totalPassengers").innerText = data.passenger.length;
-            
+
             if (data.totalText) {
                 document.getElementById("disp-fare").innerText = "₹" + data.fare.toLocaleString('en-IN');
                 document.getElementById("disp-totalAmount").innerText = data.totalText;
@@ -403,7 +436,7 @@
         document.addEventListener('click', (e) => {
             const popup = document.getElementById('profile-popup');
             const trigger = document.getElementById('profile-trigger');
-            if (popup && popup.classList.contains('active') && !popup.contains(e.target) && !trigger.contains(e.target)) {
+            if (popup && trigger && !popup.contains(e.target) && !trigger.contains(e.target)) {
                 popup.classList.remove('active');
             }
         });

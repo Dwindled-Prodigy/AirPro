@@ -9,6 +9,11 @@
     <!-- fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700;800&amp;display=swap"
         rel="stylesheet" />
@@ -89,7 +94,7 @@
     </script>
     <style>
         .material-symbols-outlined {
-            font-variation-settings: 'FILL'0, 'wght'400, 'GRAD'0, 'opsz'24;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
         body {
@@ -188,17 +193,17 @@
                     onclick="void(0)">Home</button>
                 <button
                     class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors duration-200"
-                    onclick="void(0)">Flights</button>
+                    onclick="handleProtectedNav('flights')">Flights</button>
                 <button
                     class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors duration-200"
-                    onclick="void(0)">Bookings</button>
+                    onclick="handleProtectedNav('bookings')">Bookings</button>
             </nav>
             <div class="flex items-center space-x-4">
                 <div class="relative" id="profile-container">
                     <button
                         class="flex items-center gap-2 p-1 pl-3 h-10 rounded-full hover:bg-slate-100 transition-all border border-outline-variant/20 text-slate-600 hover:text-primary"
                         onclick="handleProfileClick()" id="profile-trigger" title="Account">
-                        <span id="trigger-label" class="text-xs font-semibold font-body hidden">Login / Sign Up</span>
+                        <span id="trigger-label" class="text-xs font-semibold font-body hidden"></span>
                         <span id="trigger-icon" class="material-symbols-outlined align-middle"
                             data-icon="account_circle">account_circle</span>
                     </button>
@@ -215,8 +220,9 @@
                                 <span id="popup-name"
                                     class="font-manrope text-base font-bold text-on-surface tracking-tight">Guest
                                     User</span>
-                                <span id="popup-email"
-                                    class="font-body text-xs text-on-surface-variant font-medium">customer@airpro.com</span>
+                                <span id="popup-email" class="font-body text-xs text-on-surface-variant font-medium"><a
+                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                        data-cfemail="fb988e888f94969e89bb9a92898b8994d5989496">[email&#160;protected]</a></span>
                             </div>
                         </div>
                         <div class="py-2">
@@ -261,7 +267,7 @@
             <div class="absolute inset-0 overflow-hidden z-0">
                 <img alt="Professional commercial aircraft" class="absolute inset-0 w-full h-full object-cover"
                     data-alt="A clean, professional wide shot of a commercial airliner flying above a layer of soft white clouds during high noon with clear blue skies"
-                    src="images/index_bg.jpeg" />
+                    src="images/index_bg.jpeg">
                 <div class="absolute inset-0 bg-gradient-to-r from-on-background/60 to-transparent"></div>
             </div>
             <div class="relative z-10 max-w-7xl mx-auto px-8 w-full">
@@ -284,6 +290,7 @@
                                     class="bg-transparent border-none focus:ring-0 text-body-md w-full p-0 font-medium"
                                     placeholder="Departure City" type="text" autocomplete="off" />
                             </div>
+
                             <div id="departure-dropdown"
                                 class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-outline-variant/20 z-30 max-h-56 overflow-y-auto">
                             </div>
@@ -358,8 +365,12 @@
                             </button>
                         </div>
                     </div>
+                    <p id="same-city-error" class="hidden text-xs text-red-500 mt-1">Source and destination cannot be
+                        the same.</p>
                 </div>
+
             </div>
+
             </div>
         </section>
         <!-- items -->
@@ -379,7 +390,7 @@
                 </div>
                 <!-- item 2 -->
                 <div class="bg-surface-container-lowest p-6 rounded-xl shadow-md flex items-center gap-6 border border-white hover:shadow-lg transition-all cursor-pointer"
-                    onclick="window.location.href='tickets.html'">
+                    onclick="handleProtectedNav('bookings')">
                     <div
                         class="bg-secondary-fixed w-14 h-14 rounded-full flex items-center justify-center text-secondary">
                         <span class="material-symbols-outlined text-3xl" data-icon="receipt_long">receipt_long</span>
@@ -480,9 +491,15 @@
                     <div class="space-y-1">
                         <label
                             class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Password</label>
-                        <input id="loginPass"
-                            class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
-                            placeholder="Enter Password" required="" type="password" />
+                        <div class="relative">
+                            <input id="loginPass"
+                                class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 pr-12 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
+                                placeholder="Enter Password" required="" type="password" />
+                            <button type="button" onclick="togglePasswordVisibility('loginPass', this)"
+                                class="absolute right-2 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors p-1 flex">
+                                <span class="material-symbols-outlined text-[20px]">visibility_off</span>
+                            </button>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between py-2">
                         <label class="flex items-center gap-2 cursor-pointer group">
@@ -492,7 +509,8 @@
                                 class="text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Remember
                                 Me</span>
                         </label>
-                        <a class="text-sm font-semibold text-primary hover:underline" href="#">Forgot Password?</a>
+                        <a class="text-sm font-semibold text-primary hover:underline cursor-pointer"
+                            onclick="openForgotPassword()">Forgot Password?</a>
                     </div>
                     <button id="loginSubmitBtn"
                         class="w-full py-4 bg-primary text-white font-headline font-bold rounded-lg shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-[0.98] transition-all"
@@ -505,33 +523,79 @@
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Full
                             Name</label>
-                        <input id="signupName"
+                        <input id="signupName" oninput="validateSignupName(this)"
                             class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
                             placeholder="Enter Full Name" required="" type="text" />
+                        <p id="signupNameError" class="hidden text-xs text-red-500 mt-1">Full Name cannot contain
+                            numbers or special characters.</p>
                     </div>
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Email
                             Address</label>
-                        <input id="signupEmail"
+                        <input id="signupEmail" oninput="validateSignupEmail(this)"
                             class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
                             placeholder="Enter Email Address" required="" type="email" />
+                        <p id="signupEmailError" class="hidden text-xs text-red-500 mt-1">Invalid email: The first
+                            character must be a letter.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-1">
                             <label
                                 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Password</label>
-                            <input
-                                class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
-                                id="signupPass" placeholder="Enter Password" required="" type="password" />
+                            <div class="relative">
+                                <input
+                                    class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 pr-10 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
+                                    id="signupPass" placeholder="Enter Password" required="" type="password"
+                                    oninput="validateSignupPasswordUI()" />
+                                <button type="button" onclick="togglePasswordVisibility('signupPass', this)"
+                                    class="absolute right-2 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors p-1 flex">
+                                    <span class="material-symbols-outlined text-[20px]">visibility_off</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="space-y-1">
                             <label
                                 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Confirm</label>
-                            <input
-                                class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
-                                id="signupConfirm" placeholder="Confirm Password" required="" type="password" />
+                            <div class="relative">
+                                <input
+                                    class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 pr-10 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
+                                    id="signupConfirm" placeholder="Confirm Password" required="" type="password" />
+                                <button type="button" onclick="togglePasswordVisibility('signupConfirm', this)"
+                                    class="absolute right-2 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors p-1 flex">
+                                    <span class="material-symbols-outlined text-[20px]">visibility_off</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                    <!-- Password Checklist -->
+                    <div class="grid grid-cols-2 gap-y-2 gap-x-4 mt-1 mb-2 text-[10px]" id="passwordChecklist">
+                        <div id="check-length"
+                            class="flex items-center gap-1.5 text-outline transition-colors duration-300">
+                            <span class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> 8-30
+                            characters
+                        </div>
+                        <div id="check-upper"
+                            class="flex items-center gap-1.5 text-outline transition-colors duration-300">
+                            <span class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> Uppercase
+                            letter
+                        </div>
+                        <div id="check-lower"
+                            class="flex items-center gap-1.5 text-outline transition-colors duration-300">
+                            <span class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> Lowercase
+                            letter
+                        </div>
+                        <div id="check-digit"
+                            class="flex items-center gap-1.5 text-outline transition-colors duration-300">
+                            <span class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> Number
+                            (0-9)
+                        </div>
+                        <div id="check-special"
+                            class="flex items-center gap-1.5 text-outline transition-colors duration-300 col-span-2">
+                            <span class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> Special
+                            character
+                        </div>
+                    </div>
+                    <p id="signupPassError" class="hidden text-xs text-red-500 -mt-2"></p>
                     <p class="text-[10px] text-outline text-center leading-relaxed">
                         By signing up, you agree to AIRPRO's <a class="underline" href="footers/T&C.html">Terms of
                             Service</a> and <a class="underline" href="footers/privacy_policy.html">Privacy Policy</a>.
@@ -545,12 +609,55 @@
             </div>
         </div>
     </div>
+    <!-- Forgot Password Modal -->
+    <div class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-on-background/40 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
+        id="forgotOverlay">
+        <div class="relative w-full max-w-sm bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden scale-90 transition-transform duration-300 p-8"
+            id="forgotModal">
+            <button
+                class="absolute top-4 right-4 z-10 p-2 text-outline hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors"
+                onclick="closeForgotPassword()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="text-center mb-6">
+                <h2 class="font-headline text-xl font-extrabold text-on-surface">Reset Password</h2>
+                <p class="text-on-surface-variant text-sm mt-2">Enter your registered email address.</p>
+            </div>
+            <div id="forgotFormSection" class="space-y-4">
+                <div class="space-y-1">
+                    <label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Email
+                        Address</label>
+                    <input id="forgotEmail"
+                        class="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all"
+                        placeholder="Enter your email" type="email" />
+                    <p id="forgotEmailError" class="hidden text-xs text-red-500 mt-1"></p>
+                </div>
+                <button onclick="handleForgotPassword()"
+                    class="w-full py-3 bg-primary text-white font-headline font-bold rounded-lg shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-[0.98] transition-all">
+                    Send Reset Link
+                </button>
+            </div>
+            <div id="forgotSuccessSection" class="hidden text-center space-y-4">
+                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                    <span class="material-symbols-outlined text-3xl text-primary">mark_email_read</span>
+                </div>
+                <p class="text-sm text-on-surface-variant">A password reset link has been sent to <span
+                        id="forgotEmailDisplay" class="font-bold text-on-surface"></span>. Please check your inbox and
+                    follow the link to reset your password.</p>
+                <button onclick="closeForgotPassword()"
+                    class="w-full py-3 bg-primary text-white font-headline font-bold rounded-lg shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-[0.98] transition-all">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
     <!-- Toast Notification -->
     <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] bg-on-background text-surface rounded-lg px-6 py-4 flex items-center gap-3 shadow-2xl translate-y-20 opacity-0 transition-all duration-300"
         id="toast">
         <span class="material-symbols-outlined text-tertiary-fixed" data-icon="check_circle">check_circle</span>
         <span class="font-semibold" id="toastMessage">Login successful. Welcome back!</span>
     </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         // Simulate local state
         let isLoggedIn = false;
@@ -561,7 +668,7 @@
         const DUMMY_USERS = {
             'customer@airpro.com': {
                 password: 'password123',
-                name: 'Kiyatoka Ayanokoji',
+                name: 'Lelouch Vi Brittania',
                 role: 'customer',
                 email: 'customer@airpro.com'
             },
@@ -574,6 +681,12 @@
         };
 
         window.addEventListener('load', () => {
+            // Prevent going back to previous pages
+            window.history.pushState(null, "", window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, "", window.location.href);
+            };
+
             // Check session storage for persistence if needed
             const session = localStorage.getItem('airpro_session');
             if (session) {
@@ -588,7 +701,23 @@
             }
         });
 
+        function resetPasswordVisibility() {
+            const fields = ['loginPass', 'signupPass', 'signupConfirm'];
+            fields.forEach(id => {
+                const input = document.getElementById(id);
+                if (input && input.type === 'text') {
+                    input.type = 'password';
+                    const btn = input.nextElementSibling;
+                    if (btn) {
+                        const icon = btn.querySelector('.material-symbols-outlined');
+                        if (icon) icon.textContent = 'visibility_off';
+                    }
+                }
+            });
+        }
+
         function setRole(role) {
+            resetPasswordVisibility();
             authRole = role;
             const custBtn = document.getElementById('role-customer');
             const adminBtn = document.getElementById('role-admin');
@@ -609,6 +738,7 @@
         }
 
         function openModal() {
+            resetPasswordVisibility();
             const overlay = document.getElementById('modalOverlay');
             const modal = document.getElementById('authModal');
             overlay.classList.remove('opacity-0', 'pointer-events-none');
@@ -617,6 +747,7 @@
         }
 
         function closeModal() {
+            resetPasswordVisibility();
             const overlay = document.getElementById('modalOverlay');
             const modal = document.getElementById('authModal');
             overlay.classList.add('opacity-0', 'pointer-events-none');
@@ -625,6 +756,7 @@
         }
 
         function switchTab(tab) {
+            resetPasswordVisibility();
             const loginForm = document.getElementById('loginForm');
             const signupForm = document.getElementById('signupForm');
             const tabLogin = document.getElementById('tab-login');
@@ -664,11 +796,30 @@
                 const email = document.getElementById('signupEmail').value;
                 const pass = document.getElementById('signupPass').value;
                 const confirm = document.getElementById('signupConfirm').value;
+                const passError = document.getElementById('signupPassError');
 
-                if (pass !== confirm) {
-                    showToast("Passwords do not match!", true);
+                // Name validation
+                if (!/^[A-Za-z\s]+$/.test(name)) {
+                    passError.textContent = "Full Name cannot contain numbers or special characters.";
+                    passError.classList.remove('hidden');
                     return;
                 }
+
+                // Password validation
+                const passValid = validatePassword(pass);
+                if (passValid !== true) {
+                    passError.textContent = passValid;
+                    passError.classList.remove('hidden');
+                    return;
+                }
+                passError.classList.add('hidden');
+
+                if (pass !== confirm) {
+                    passError.textContent = "Passwords do not match!";
+                    passError.classList.remove('hidden');
+                    return;
+                }
+                passError.classList.add('hidden');
 
                 // Push new user to localStorage "database"
                 const registrations = JSON.parse(localStorage.getItem('airpro_registrations') || '{}');
@@ -681,6 +832,11 @@
                 localStorage.setItem('airpro_registrations', JSON.stringify(registrations));
 
                 showToast("Account created successfully!");
+
+                // Clear the form fields and reset the UI checklist
+                document.getElementById('signupForm').reset();
+                validateSignupPasswordUI();
+
                 setTimeout(() => {
                     switchTab('login');
                 }, 1500);
@@ -752,7 +908,7 @@
             const popup = document.getElementById('profile-popup');
             const trigger = document.getElementById('profile-trigger');
             if (popup && popup.classList.contains('active') && !popup.contains(e.target) && !trigger.contains(e
-                    .target)) {
+                .target)) {
                 popup.classList.remove('active');
             }
         });
@@ -769,7 +925,7 @@
                 popupName.innerText = currentUser.name;
                 popupEmail.innerText = currentUser.email;
             } else {
-                triggerLabel.innerText = "Login / Sign Up";
+                triggerLabel.innerText = "";
                 triggerLabel.classList.add('hidden');
 
                 popupName.innerText = "Guest User";
@@ -786,131 +942,271 @@
             showToast("Successfully logged out.");
         }
 
+        function validateSignupName(input) {
+            const err = document.getElementById('signupNameError');
+            if (/[^A-Za-z\s]/.test(input.value)) {
+                err.classList.remove('hidden');
+                // Immediately remove invalid characters so they can't be typed
+                input.value = input.value.replace(/[^A-Za-z\s]/g, '');
+            } else {
+                err.classList.add('hidden');
+            }
+        }
+
+        function validateSignupEmail(input) {
+            const err = document.getElementById('signupEmailError');
+            let hasError = false;
+            let errMsg = "";
+
+            if (/^[^a-z]/i.test(input.value)) {
+                hasError = true;
+                errMsg = "Invalid email: The first character must be a letter.";
+                input.value = input.value.replace(/^[^a-z]+/i, '');
+            } else if (/[A-Z]/.test(input.value)) {
+                hasError = true;
+                errMsg = "Invalid email: Cannot contain uppercase letters.";
+                input.value = input.value.replace(/[A-Z]/g, '');
+            } else if (/[^a-z0-9@._-]/.test(input.value)) {
+                hasError = true;
+                errMsg = "Invalid email: Cannot contain invalid special characters.";
+                input.value = input.value.replace(/[^a-z0-9@._-]/g, '');
+            }
+
+            if (hasError) {
+                err.textContent = errMsg;
+                err.classList.remove('hidden');
+            } else {
+                err.classList.add('hidden');
+            }
+        }
+
+        // Password visual UI checklist
+        function validateSignupPasswordUI() {
+            const pass = document.getElementById('signupPass').value;
+
+            const checks = [
+                { id: 'check-length', valid: pass.length >= 8 && pass.length <= 30 },
+                { id: 'check-upper', valid: /[A-Z]/.test(pass) },
+                { id: 'check-lower', valid: /[a-z]/.test(pass) },
+                { id: 'check-digit', valid: /[0-9]/.test(pass) },
+                { id: 'check-special', valid: /[^A-Za-z0-9]/.test(pass) }
+            ];
+
+            checks.forEach(check => {
+                const el = document.getElementById(check.id);
+                const icon = el.querySelector('.material-symbols-outlined');
+                if (check.valid) {
+                    el.classList.remove('text-outline');
+                    el.classList.add('text-green-600');
+                    icon.textContent = 'check_circle';
+                } else {
+                    el.classList.remove('text-green-600');
+                    el.classList.add('text-outline');
+                    icon.textContent = 'radio_button_unchecked';
+                }
+            });
+        }
+
+        // Toggle password visibility
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('.material-symbols-outlined');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
+        }
+
+        // Password validation
+        function validatePassword(pass) {
+            if (pass.length < 8) return "Password must be at least 8 characters.";
+            if (pass.length > 30) return "Password must not exceed 30 characters.";
+            if (!/[A-Z]/.test(pass)) return "Password must contain at least one uppercase letter.";
+            if (!/[a-z]/.test(pass)) return "Password must contain at least one lowercase letter.";
+            if (!/[0-9]/.test(pass)) return "Password must contain at least one digit.";
+            if (!/[^A-Za-z0-9]/.test(pass)) return "Password must contain at least one special character.";
+            return true;
+        }
+
+        // Forgot Password
+        function openForgotPassword() {
+            closeModal();
+            const overlay = document.getElementById('forgotOverlay');
+            const modal = document.getElementById('forgotModal');
+            document.getElementById('forgotFormSection').classList.remove('hidden');
+            document.getElementById('forgotSuccessSection').classList.add('hidden');
+            document.getElementById('forgotEmail').value = '';
+            document.getElementById('forgotEmailError').classList.add('hidden');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.remove('scale-90');
+            modal.classList.add('scale-100');
+        }
+
+        function closeForgotPassword() {
+            const overlay = document.getElementById('forgotOverlay');
+            const modal = document.getElementById('forgotModal');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.add('scale-90');
+            modal.classList.remove('scale-100');
+        }
+
+        function handleForgotPassword() {
+            const emailInput = document.getElementById('forgotEmail');
+            const emailError = document.getElementById('forgotEmailError');
+            const email = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                emailError.textContent = "Please enter a valid email address.";
+                emailError.classList.remove('hidden');
+                return;
+            }
+            emailError.classList.add('hidden');
+            document.getElementById('forgotEmailDisplay').textContent = email;
+            document.getElementById('forgotFormSection').classList.add('hidden');
+            document.getElementById('forgotSuccessSection').classList.remove('hidden');
+        }
+
+        // Protected nav (requires login)
+        function handleProtectedNav(page) {
+            if (!isLoggedIn) {
+                openModal();
+                return;
+            }
+            if (page === 'bookings') {
+                window.location.href = 'tickets.html';
+            } else if (page === 'flights') {
+                window.location.href = '#';
+            }
+        }
+
         // cities
         const indianCities = [{
-                code: 'DEL',
-                city: 'Delhi'
-            },
-            {
-                code: 'BOM',
-                city: 'Mumbai'
-            },
-            {
-                code: 'BLR',
-                city: 'Bengaluru'
-            },
-            {
-                code: 'MAA',
-                city: 'Chennai'
-            },
-            {
-                code: 'CCU',
-                city: 'Kolkata'
-            },
-            {
-                code: 'HYD',
-                city: 'Hyderabad'
-            },
-            {
-                code: 'COK',
-                city: 'Kochi'
-            },
-            {
-                code: 'AMD',
-                city: 'Ahmedabad'
-            },
-            {
-                code: 'PNQ',
-                city: 'Pune'
-            },
-            {
-                code: 'GOI',
-                city: 'Goa'
-            },
-            {
-                code: 'JAI',
-                city: 'Jaipur'
-            },
-            {
-                code: 'LKO',
-                city: 'Lucknow'
-            },
-            {
-                code: 'IXC',
-                city: 'Chandigarh'
-            },
-            {
-                code: 'PAT',
-                city: 'Patna'
-            },
-            {
-                code: 'GAU',
-                city: 'Guwahati'
-            },
-            {
-                code: 'BHO',
-                city: 'Bhopal'
-            },
-            {
-                code: 'NAG',
-                city: 'Nagpur'
-            },
-            {
-                code: 'VNS',
-                city: 'Varanasi'
-            },
-            {
-                code: 'IXB',
-                city: 'Bagdogra'
-            },
-            {
-                code: 'SXR',
-                city: 'Srinagar'
-            },
-            {
-                code: 'TRV',
-                city: 'Thiruvananthapuram'
-            },
-            {
-                code: 'CJB',
-                city: 'Coimbatore'
-            },
-            {
-                code: 'IXM',
-                city: 'Madurai'
-            },
-            {
-                code: 'RPR',
-                city: 'Raipur'
-            },
-            {
-                code: 'BBI',
-                city: 'Bhubaneswar'
-            },
-            {
-                code: 'VGA',
-                city: 'Vijayawada'
-            },
-            {
-                code: 'VTZ',
-                city: 'Visakhapatnam'
-            },
-            {
-                code: 'IXJ',
-                city: 'Jammu'
-            },
-            {
-                code: 'IDR',
-                city: 'Indore'
-            },
-            {
-                code: 'ATQ',
-                city: 'Amritsar'
-            },
-            {
-                code: 'UDR',
-                city: 'Udaipur'
-            },
+            code: 'DEL',
+            city: 'Delhi'
+        },
+        {
+            code: 'BOM',
+            city: 'Mumbai'
+        },
+        {
+            code: 'BLR',
+            city: 'Bengaluru'
+        },
+        {
+            code: 'MAA',
+            city: 'Chennai'
+        },
+        {
+            code: 'CCU',
+            city: 'Kolkata'
+        },
+        {
+            code: 'HYD',
+            city: 'Hyderabad'
+        },
+        {
+            code: 'COK',
+            city: 'Kochi'
+        },
+        {
+            code: 'AMD',
+            city: 'Ahmedabad'
+        },
+        {
+            code: 'PNQ',
+            city: 'Pune'
+        },
+        {
+            code: 'GOI',
+            city: 'Goa'
+        },
+        {
+            code: 'JAI',
+            city: 'Jaipur'
+        },
+        {
+            code: 'LKO',
+            city: 'Lucknow'
+        },
+        {
+            code: 'IXC',
+            city: 'Chandigarh'
+        },
+        {
+            code: 'PAT',
+            city: 'Patna'
+        },
+        {
+            code: 'GAU',
+            city: 'Guwahati'
+        },
+        {
+            code: 'BHO',
+            city: 'Bhopal'
+        },
+        {
+            code: 'NAG',
+            city: 'Nagpur'
+        },
+        {
+            code: 'VNS',
+            city: 'Varanasi'
+        },
+        {
+            code: 'IXB',
+            city: 'Bagdogra'
+        },
+        {
+            code: 'SXR',
+            city: 'Srinagar'
+        },
+        {
+            code: 'TRV',
+            city: 'Thiruvananthapuram'
+        },
+        {
+            code: 'CJB',
+            city: 'Coimbatore'
+        },
+        {
+            code: 'IXM',
+            city: 'Madurai'
+        },
+        {
+            code: 'RPR',
+            city: 'Raipur'
+        },
+        {
+            code: 'BBI',
+            city: 'Bhubaneswar'
+        },
+        {
+            code: 'VGA',
+            city: 'Vijayawada'
+        },
+        {
+            code: 'VTZ',
+            city: 'Visakhapatnam'
+        },
+        {
+            code: 'IXJ',
+            city: 'Jammu'
+        },
+        {
+            code: 'IDR',
+            city: 'Indore'
+        },
+        {
+            code: 'ATQ',
+            city: 'Amritsar'
+        },
+        {
+            code: 'UDR',
+            city: 'Udaipur'
+        },
         ];
 
         const depInput = document.getElementById('departure-input');
@@ -941,6 +1237,7 @@
                         e.preventDefault();
                         depInput.value = `${c.code} - ${c.city}`;
                         depDropdown.classList.add('hidden');
+                        checkSameCityError();
                     });
                     depDropdown.appendChild(item);
                 });
@@ -990,6 +1287,7 @@
                         e.preventDefault();
                         arrInput.value = `${c.code} - ${c.city}`;
                         arrDropdown.classList.add('hidden');
+                        checkSameCityError();
                     });
                     arrDropdown.appendChild(item);
                 });
@@ -1197,8 +1495,26 @@
         });
         [ddInput, mmInput, yyyyInput].forEach(inp => inp.addEventListener('blur', validateDate));
 
+        // Same city validation
+        function checkSameCityError() {
+            const dep = document.getElementById('departure-input').value.trim();
+            const arr = document.getElementById('arrival-input').value.trim();
+            const errEl = document.getElementById('same-city-error');
+            if (dep && arr && dep === arr) {
+                errEl.classList.remove('hidden');
+            } else {
+                errEl.classList.add('hidden');
+            }
+        }
+
         // Search Redirect
         function handleSearch() {
+            if (!isLoggedIn) {
+                showToast("Please login to proceed with booking or searching flights.", true);
+                openModal();
+                return;
+            }
+
             const dep = document.getElementById('departure-input').value;
             const arr = document.getElementById('arrival-input').value;
             const dd = document.getElementById('date-dd').value;
@@ -1207,6 +1523,11 @@
 
             if (!dep || !arr || !dd || !mm || !yyyy) {
                 alert("Please fill in all search details.");
+                return;
+            }
+
+            if (dep === arr) {
+                document.getElementById('same-city-error').classList.remove('hidden');
                 return;
             }
 
@@ -1225,8 +1546,7 @@
                 to: toCode,
                 date: formattedDate
             });
-
-            window.location.href = `flight_details.html?${params.toString()}`;
+            window.location.href = `flight_results.html?${params.toString()}`;
         }
     </script>
 </body>
